@@ -1,0 +1,30 @@
+<%- include("./partials/header") %>
+
+<h1 style = "color:green;" >   
+    Fair Manager 
+</h1> 
+
+
+
+
+<table style="border: 2px solid black;">
+   <tr> <% for (let index = 0; index < Object.keys(results[0]).length; index++) {  %> 
+    
+        <th style="border: 1px solid black;"><%= Object.keys(results[0])[index] %></th>
+        
+     <%}  %> </tr>
+
+     <% for (let index = 0; index < results.length; index++) { %>
+        <tr>
+            <% for (let i = 0; i < Object.keys(results[0]).length; i++) {  %>
+                <td style="border: 1px solid black;"> <%= results[index][Object.keys(results[0])[i]] %> </td>
+             <%}  %> 
+    
+        </tr>
+        <%  } %> 
+
+</table>
+<br>
+<a href="/" class="btn btn-sm btn-outline-info">Query Again</a>
+
+<%- include("./partials/footer") %>

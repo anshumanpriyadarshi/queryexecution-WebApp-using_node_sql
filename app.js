@@ -1,7 +1,8 @@
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser")
-
+const Swal = require('sweetalert2');
 const mysql = require('mysql');
 
 app.set("view engine","ejs");
@@ -43,12 +44,18 @@ app.get("/query/:text",(req,res)=>{
 
   try{
     connection.query(query, function (error, results, fields) {
+      let checker = query.substring(0,3)
       if (error){
         console.log("Query not valid");
-        res.redirect("/");
+        return res.redirect("/");
       }
+      if(checker.toLowerCase() === "use"){
+        
+        return res.redirect("/");
+        
+      }
+
       else{
-            
             res.render("query.ejs",{results : results});
             
       }
